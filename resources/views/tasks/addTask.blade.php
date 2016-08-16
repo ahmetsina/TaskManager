@@ -10,6 +10,7 @@
             {{ csrf_field() }}
 
             <div class="form-group">
+                <h5>{{$baslik}}</h5>
                 <label for="task-name" class="col-sm-3 control-label">Task Picture</label>
                 <div class="col-sm-6">
                     <input type="file" name="task_picture"  id="task_picture" class="form-control">

@@ -34,8 +34,8 @@ class TaskController extends Controller
 
     public function create()
     {
-
-        return view('tasks.addTask');
+        //return response()->json(['name' => 'Abigail','state' => 'CA']);
+        return view('tasks.addTask', ['baslik' => 'Görev Ekle']);
 }
     public function store(Request $request)
     {
