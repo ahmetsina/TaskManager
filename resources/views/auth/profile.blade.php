@@ -7,9 +7,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Profil Bilgileri</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="PUT" action="{{ url('/profile') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('profile.update') }}">
                             {{ csrf_field() }}
-
+                            {{method_field('PUT')}}
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <label for="name" class="col-md-4 control-label">Ad</label>
 

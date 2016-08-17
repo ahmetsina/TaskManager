@@ -35,9 +35,15 @@ Route::get('/tasks','TaskController@index');
 Route::get('/addTasks','TaskController@create');
 Route::post('/task','TaskController@store');
 Route::get('/profile','UserController@index');
-Route::put('/profile','UserController@update');
+Route::put('/profile',['as' => 'profile.update' , 'uses' => 'UserController@update']);
 
 Route::delete('/task/{task}','TaskController@destroy');
 Route::get('/home', 'HomeController@index');
 
+Route::get('/image', function()
+{
+    $img = Image::make('foo.png')->resize(900, 600);
+
+    return $img->response('jpg');
+});
 //Route::delete('/task/{tasks}','TaskController@destroy');

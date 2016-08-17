@@ -9,7 +9,6 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -20,7 +19,7 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $user = \Auth::user();
 
@@ -30,7 +29,9 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        $user = \Auth::user();
+        $auth = \Auth::user();
+
+        $user = User::find($auth->id);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
