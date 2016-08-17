@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\TaskRepository;
+use Image;
+
 class TaskController extends Controller
 {
 
@@ -47,6 +49,8 @@ class TaskController extends Controller
             'name' => $request ->name,
             'task_picture' => $request ->task_picture,
         ]);
+        $file = $request->file('task_picture');
+        Image::make($file)->resize(300, 200)->save('foo.jpg');
         return redirect('/tasks');
     }
 

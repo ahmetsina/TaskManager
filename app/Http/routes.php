@@ -44,6 +44,7 @@ Route::get('/image', function()
 {
     $img = Image::make('foo.png')->resize(900, 600);
 
+
     return $img->response('jpg');
 });
 //Route::delete('/task/{tasks}','TaskController@destroy');

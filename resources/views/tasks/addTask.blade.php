@@ -6,7 +6,7 @@
     <div class="panel-body">
 
 
-        <form action="{{url('task')}}" method="post" class="form-horizontal">
+        <form action="{{url('task')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <div class="form-group">
