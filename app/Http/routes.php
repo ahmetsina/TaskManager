@@ -17,21 +17,27 @@ Route::get('/', function () {
 
 Route::auth();
 
+/*Route::any('matriphe/imageupload', function()
+{
+    $data = [];
+
+    echo config('imageupload.library');
+
+    if (Request::hasFile('file')) {
+        $data['result'] = Imageupload::upload(Request::file('file'));
+    }
+
+    return view('form.blade.php')->with($data);
+});*/
+
 
 Route::get('/tasks','TaskController@index');
 Route::get('/addTasks','TaskController@create');
 Route::post('/task','TaskController@store');
+Route::get('/profile','UserController@index');
+Route::put('/profile','UserController@update');
+
 Route::delete('/task/{task}','TaskController@destroy');
 Route::get('/home', 'HomeController@index');
-Route::get('/foo', function () {
-    return '<h1>Hello World</h1>';
-});
-Route::get('user/{id}', function ($id) {
-    return 'User '.$id;
-});
 
-Route::get('posts/{post?}', function ($post = null) {
-    return "<h1>Post : ".$post;
-});
 //Route::delete('/task/{tasks}','TaskController@destroy');
-

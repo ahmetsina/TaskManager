@@ -38,6 +38,9 @@
                     <tbody>
                     @foreach($tasks as $task)
                         <tr>
+                            <td class="table-text">
+                                <img src="{{$task->task_picture}}"></img>
+                            </td>
                             <!--- Task Name -->
                             <td class="table-text">
                                 <div>{{$task->name}}</div>
