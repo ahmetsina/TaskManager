@@ -11,6 +11,10 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests;
+
+use Intervention\Image\Facades\Image as Image;
+
 
 class UserController extends Controller
 {
@@ -30,12 +34,37 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $auth = \Auth::user();
-
         $user = User::find($auth->id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->save();
+        $file = $request->file('profile_picture');
+
+        $url = $request ->name.'.jpg';
+        Image::make($file)->save($url);
+
+        $request->user()->create([
+            'name' => $request ->name,
+            'profile_picture' => $url,
+            'email' => $url,
+        ]);
+        //$user->profile_picture = $request->url;
+        //$user->name = $request->name;
+        //$user->email = $request->email;
+        //$user->save();
 
         return view('auth.profile')->with('user',$user);
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:255'
+        ]);
+
+
+
+        $request->user()->tasks()->create([
+            'name' => $request ->name,
+            'task_picture' => $url,
+        ]);
+        return redirect('/tasks');
     }
 }

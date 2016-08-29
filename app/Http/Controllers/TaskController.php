@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\TaskRepository;
-use Image;
+use Intervention\Image\Facades\Image;
 
 class TaskController extends Controller
 {
@@ -45,12 +45,14 @@ class TaskController extends Controller
             'name' => 'required|max:255'
         ]);
 
+        $file = $request->file('task_picture');
+        $url = $request ->name.'.jpg';
+        Image::make($file)->save($url);
+
         $request->user()->tasks()->create([
             'name' => $request ->name,
-            'task_picture' => $request ->task_picture,
+            'task_picture' => $url,
         ]);
-        $file = $request->file('task_picture');
-        Image::make($file)->resize(300, 200)->save('foo.jpg');
         return redirect('/tasks');
     }
 

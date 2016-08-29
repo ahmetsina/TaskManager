@@ -39,7 +39,7 @@
                     @foreach($tasks as $task)
                         <tr>
                             <td class="table-text">
-                                <img src="{{$task->task_picture}}"></img>
+                                <img width="120" height="120" style="border-radius: 100px" src="{{$task->task_picture}}"></img>
                             </td>
                             <!--- Task Name -->
                             <td class="table-text">
